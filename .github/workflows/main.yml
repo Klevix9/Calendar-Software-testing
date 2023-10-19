@@ -24,14 +24,14 @@ jobs:
   qodana:
     needs: build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: src
     permissions:
       contents: write
       pull-requests: write
       checks: write
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2023.2
         env:
